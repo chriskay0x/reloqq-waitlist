@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Prevent horizontal glow bleed on mobile */
+html, body {
+  overflow-x: hidden;
+  background-color: #031F1D;
+}
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
