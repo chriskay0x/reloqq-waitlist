@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, ShieldCheck, MapPin } from "lucide-react";
 
@@ -10,19 +9,16 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function HeroSection() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (e) => {
+  const handleScrollToWaitlist = (e) => {
     e.preventDefault();
-    if (!email) return;
-    setLoading(true);
-    // Replace with your actual form submission logic
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    const waitlistElement = document.getElementById("waitlist");
+    if (waitlistElement) {
+      waitlistElement.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        const input = document.getElementById("cta-name");
+        if (input) input.focus({ preventScroll: true });
+      }, 500);
+    }
   };
 
   return (
@@ -59,7 +55,7 @@ export default function HeroSection() {
 
         {/* Trust pill */}
         <motion.div {...fadeUp(0)} className="mb-8 inline-flex">
-          <span 
+          <span
             className="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-widest text-[#D2E7D6]/70"
             style={{ fontFamily: "'Utendo', sans-serif" }}>
             Nigeria's First Verified Rental Marketplace
@@ -101,65 +97,26 @@ export default function HeroSection() {
           being scammed.
         </motion.p>
 
-        {/* Waitlist form */}
-        <motion.div {...fadeUp(0.3)} className="mt-10">
-          {!submitted ? (
-            <form
-              onSubmit={handleSubmit}
-              className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
-            >
-              <div className="flex-1">
-                <label htmlFor="hero-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="hero-email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  className="w-full rounded-full border border-white/10 bg-white/5 px-5 py-3.5 text-sm text-white placeholder-white/30 outline-none backdrop-blur-md transition-all duration-200 focus:border-[#D2E7D6]/40 focus:bg-white/8 focus:ring-2 focus:ring-[#D2E7D6]/10"
-                  style={{ fontFamily: "'Utendo', sans-serif" }}
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#D2E7D6] px-6 py-3.5 text-sm font-semibold text-[#0B2A24] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#D2E7D6]/20 disabled:opacity-60"
-                style={{ fontFamily: "'Utendo', sans-serif" }}
-              >
-                {loading ? (
-                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#0B2A24] border-t-transparent" />
-                ) : (
-                  <>
-                    Get Early Access <ArrowRight size={15} />
-                  </>
-                )}
-              </button>
-            </form>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mx-auto inline-flex max-w-md items-center gap-3 rounded-full border border-[#D2E7D6]/20 bg-[#D2E7D6]/10 px-6 py-3.5 backdrop-blur-md"
-            >
-              <ShieldCheck size={16} className="shrink-0 text-[#D2E7D6]" />
-              <p
-                className="text-sm text-[#D2E7D6]"
-                style={{ fontFamily: "'Utendo', sans-serif" }}
-              >
-                You're on the list. We'll be in touch soon.
-              </p>
-            </motion.div>
-          )}
+        {/* CTA Button */}
+        <motion.div {...fadeUp(0.3)} className="mt-10 flex flex-col items-center justify-center">
+          <a
+            href="#waitlist"
+            onClick={handleScrollToWaitlist}
+            className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[#D2E7D6] px-8 py-4 text-base font-semibold text-[#0B2A24] shadow-lg shadow-[#D2E7D6]/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#D2E7D6]/25 active:translate-y-0 cursor-pointer"
+            style={{ fontFamily: "'Utendo', sans-serif" }}
+          >
+            Get Early Access
+            <ArrowRight
+              size={18}
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            />
+          </a>
 
           <p
             className="mt-4 text-xs text-white/30"
             style={{ fontFamily: "'Utendo', sans-serif" }}
           >
-            No spam. No pressure. Unsubscribe anytime.
+            No spam. No pressure. Guaranteed early access & founding benefits.
           </p>
         </motion.div>
 
