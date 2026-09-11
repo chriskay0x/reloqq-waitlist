@@ -22,18 +22,41 @@ export default function WaitlistCTASection() {
         if (error) setError("");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.name.trim() || !form.email.trim()) {
             setError("Please fill in both fields to join the waitlist.");
             return;
         }
+
         setLoading(true);
-        // Replace with your actual submission logic (e.g. Mailchimp, Supabase, Resend)
-        setTimeout(() => {
-            setLoading(false);
+        setError("");
+
+        try {
+            // Paste your Supabase Function URL inside the quotes below
+            const res = await fetch("https://qiecdnkecadrcyjzhksv.supabase.co/functions/v1/waitlist", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: form.name.trim(),
+                    email: form.email.trim(),
+                    role: form.role,
+                }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error || "Something went wrong. Please try again.");
+                return;
+            }
+
             setSubmitted(true);
-        }, 1400);
+        } catch (err) {
+            setError("Network error. Please check your connection and try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
