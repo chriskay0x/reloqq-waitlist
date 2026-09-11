@@ -1,11 +1,35 @@
 @import "tailwindcss";
 
-/* Prevent horizontal glow bleed on mobile */
-html, body {
+/* Utendo - Local Font */
+
+@font-face {
+  font-family: "Utendo";
+  src:
+    url("./assets/fonts/Utendo-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Utendo-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Utendo";
+  src:
+    url("./assets/fonts/Utendo-Bold.woff2") format("woff2"),
+    url("./assets/fonts/Utendo-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Global */
+
+html,
+body {
   overflow-x: hidden;
   background-color: #031F1D;
 }
-/* Smooth scroll for anchor links */
+
 html {
   scroll-behavior: smooth;
 }
