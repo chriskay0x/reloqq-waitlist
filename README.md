@@ -1,7 +1,7 @@
-# Reloqq — Waitlist Landing Page
+# Reloqq - Waitlist Landing Page
 
 > **Nigeria's first secure, fully verified real estate marketplace.**
-> Built to eliminate scam risk and information asymmetry from the rental experience — permanently.
+> Built to eliminate scam risk and information asymmetry from the rental experience - permanently.
 
 ---
 
@@ -219,21 +219,10 @@ Access in code via `import.meta.env.VITE_YOUR_KEY`.
 - **Utendo font** is loaded from the Pixvia CDN reference. For production, self-host the `.woff2` file in `src/assets/fonts/` and update the `@font-face` `src` accordingly.
 - **`overflow-x: hidden`** is set on `html` and `body` in `index.css` to prevent ambient glows causing horizontal scroll on mobile.
 
----
-
-## Roadmap
-
-- [ ] Connect waitlist form to live backend (Supabase / Resend)
-- [ ] Add meta tags and Open Graph image for social sharing
-- [ ] Implement analytics (Plausible / PostHog)
-- [ ] Add `/privacy` and `/terms` pages
-- [ ] Internationalise copy for non-English speaking markets
-
----
 
 ## License
 
-Private and proprietary. All rights reserved © 2025 Reloqq.
+Private and proprietary. All rights reserved © 2026 Reloqq.
 
 ---
 
